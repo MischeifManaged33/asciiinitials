@@ -1,123 +1,29 @@
-/**
-* This is the main Node.js server script for your project
-* Check out the two endpoints this back-end API provides in fastify.get and fastify.post below
-*/
+var letters = [[".", "      ","      ","      ","      ","      ","      ","      ","      ","  ..  ","  ..  "],
+["A", "    AAAA    ","    AAAA    ","   AA  AA   ","   AA  AA   ","  AAAAAAAA  ","  AAAAAAAA  "," AA      AA "," AA      AA ","AA        AA","AA        AA"],
+["B", "BBBBBBBB    ","BBBBBBBB    ","BB    BB    ","BB     BB   ","BB    BB    ","BBBBBBBB    ","BBBBBBBB    ","BB     BB   ","BBBBBBBB    ","BBBBBBBB    "],
+["C", "    CCCCCCCC","  CCCCCCCCC "," CCC        ","CCC         ","CCC         ","CCC         ","CCC         ","  CCC       ","   CCCCCCCCC","    CCCCCCCC"],
+["D", "DDDDDDDDD   ","DDDDDDDDD   ","DD      DD  ","DD      DD  ","DD       DD ","DD       DD ","DD      DD  ","DD      DD  ","DDDDDDDDD   ","DDDDDDDDD   "],
+["E", "EEEEEEEEEEEE","EEEEEEEEEEEE","EE          ","EE          ","EEEEEEEEEEEE","EEEEEEEEEEEE","EE          ","EE          ","EEEEEEEEEEEE","EEEEEEEEEEEE"],
+["F", "FFFFFFFFFFFF","FFFFFFFFFFFF","FF          ","FF          ","FFFFFFFFFFFF","FFFFFFFFFFFF","FF          ","FF          ","FF          ","FF          "],
+["G", "  GGGGGGGG  ","  GGGGGGGG  ","GGG      GGG","GGG      GGG","GGG         ","GGG    GGGGG","GGG    GGGGG","GGG      GGG","GGGGGGGGGGG ","  GGGGGGGGG "],
+["H", "HH        HH","HH        HH","HH        HH","HH        HH","HHHHHHHHHHHH","HHHHHHHHHHHH","HH        HH","HH        HH","HH        HH","HH        HH"],
+["I", "IIIIIIIIIIII","IIIIIIIIIIII","     II     ","     II     ","     II     ","     II     ","     II     ","     II     ","IIIIIIIIIIII","IIIIIIIIIIII"],
+["J", "JJJJJJJJJJJJ","JJJJJJJJJJJJ","     JJ     ","     JJ     ","     JJ     ","     JJ     ","     JJ     ","JJ   JJ     "," JJ JJ      ","  JJJ       "],
+["K", "KK        KK","KK      KK  ","KK    KK    ","KK  KK      ","KKKK        ","KKKK        ","KK  KK      ","KK    KK    ","KK      KK  ","KK        KK"],
+["L", "LL          ","LL          ","LL          ","LL          ","LL          ","LL          ","LL          ","LL          ","LLLLLLLLLLLL","LLLLLLLLLLLL"],
+["M", "MMMM    MMMM","MMMM    MMMM","MM  M  M  MM","MM  MMMM  MM","MM   MM   MM","MM        MM","MM        MM","MM        MM","MM        MM","MM        MM"],
+["N", "NN        NN","NNNN      NN","NNNN      NN","NN  NN    NN","NN  NN    NN","NN    NN  NN","NN    NN  NN","NN      NNNN","NN      NNNN","NN        NN"],
+["O", "    OOOO    ","  OOOOOOOO  ","OOOO    OOOO","OO        OO","OO        OO","OO        OO","OO        OO","OOOO    OOOO","  OOOOOOOO  ","    OOOO    "],
+["P", "PPPPPPPPPP  ","PPPPPPPPPP  ","PP        PP","PP        PP","PPPPPPPPPP  ","PPPPPPPPPP  ","PP          ","PP          ","PP          ","PP          "],
+["Q", "    QQQQ    ","  QQQQQQQQ  ","QQQQ    QQQQ","QQ        QQ","QQ        QQ","QQ        QQ","QQ    QQ  QQ","QQQQ    QQQQ","  QQQQQQQQ  ","    QQQQ  QQ"],
+["R", "RRRRRRRRRR  ","RRRRRRRRRR  ","RR        RR","RR        RR","RRRRRRRRRR  ","RRRRRRRRRR  ","RR   RR     ","RR     RR   ","RR       RR ","RR        RR"],
+["S", "  SSSSSSSS  ","  SSSSSSSS  ","SSSS    SSSS","SSSS    SSSS","  SS        ","    SSSS    ","      SSSS  ","SSSS    SSSS","SSSS    SSSS","  SSSSSSSS  "],
+["T", "TTTTTTTTTTTT","TTTTTTTTTTTT","     TT     ","     TT     ","     TT     ","     TT     ","     TT     ","     TT     ","     TT     ","     TT     "],
+["U", "UU        UU","UU        UU","UU        UU","UU        UU","UU        UU","UU        UU"," UU      UU "," UU      UU ","   UUUUUU   ","   UUUUUU   "],
+["V", "VV        VV","VV        VV"," VV      VV "," VV      VV ","  VV    VV  ","  VV    VV  ","   VV  VV   ","   VV  VV   ","    VVVV    ","    VVVV    "],
+["W", "WW        WW","WW        WW","WW        WW","WW        WW","WW   WW   WW","WW   WW   WW","WW  WWWW  WW","WW  WWWW  WW","WWWWW  WWWWW","WWWW    WWWW"],
+["X", "XX        XX"," XX      XX ","  XX    XX  ","   XX  XX   ","    XXXX    ","    XXXX    ","   XX  XX   ","  XX    XX  "," XX      XX ","XX        XX"],
+["Y", "YY        YY"," YY      YY ","  YY    YY  ","   YY  YY   ","    YYYY    ","    YYYY    ","     YY     ","     YY     ","     YY     ","     YY     "],
+["Z", "ZZZZZZZZZZZZ","ZZZZZZZZZZZZ","         ZZZ","        ZZZ ","       ZZZ  ","    ZZZ     "," ZZZ        ","ZZZ         ","ZZZZZZZZZZZZ","ZZZZZZZZZZZZ"]];
 
-const path = require("path");
-
-// Require the fastify framework and instantiate it
-const fastify = require("fastify")({
-  // Set this to true for detailed logging:
-  logger: false
-});
-
-// ADD FAVORITES ARRAY VARIABLE FROM TODO HERE
-
-
-// Setup our static files
-fastify.register(require("fastify-static"), {
-  root: path.join(__dirname, "public"),
-  prefix: "/" // optional: default '/'
-});
-
-// fastify-formbody lets us parse incoming forms
-fastify.register(require("fastify-formbody"));
-
-// point-of-view is a templating manager for fastify
-fastify.register(require("point-of-view"), {
-  engine: {
-    handlebars: require("handlebars")
-  }
-});
-
-// Load and parse SEO data
-const seo = require("./src/seo.json");
-if (seo.url === "glitch-default") {
-  seo.url = `https://${process.env.PROJECT_DOMAIN}.glitch.me`;
-}
-
-/**
-* Our home page route
-*
-* Returns src/pages/index.hbs with data built into it
-*/
-fastify.get("/", function(request, reply) {
-  
-  // params is an object we'll pass to our handlebars template
-  let params = { seo: seo };
-  
-  // If someone clicked the option for a random color it'll be passed in the querystring
-  if (request.query.randomize) {
-    
-    // We need to load our color data file, pick one at random, and add it to the params
-    const colors = require("./src/colors.json");
-    const allColors = Object.keys(colors);
-    let currentColor = allColors[(allColors.length * Math.random()) << 0];
-    
-    // Add the color properties to the params object
-    params = {
-      color: colors[currentColor],
-      colorError: null,
-      seo: seo
-    };
-  }
-  
-  // The Handlebars code will be able to access the parameter values and build them into the page
-  reply.view("/src/pages/index.hbs", params);
-});
-
-/**
-* Our POST route to handle and react to form submissions 
-*
-* Accepts body data indicating the user choice
-*/
-fastify.post("/", function(request, reply) {
-  
-  // Build the params object to pass to the template
-  let params = { seo: seo };
-  
-  // If the user submitted a color through the form it'll be passed here in the request body
-  let color = request.body.color;
-  
-  // If it's not empty, let's try to find the color
-  if (color) {
-    // ADD CODE FROM TODO HERE TO SAVE SUBMITTED FAVORITES
-    
-    // Load our color data file
-    const colors = require("./src/colors.json");
-    
-    // Take our form submission, remove whitespace, and convert to lowercase
-    color = color.toLowerCase().replace(/\s/g, "");
-    
-    // Now we see if that color is a key in our colors object
-    if (colors[color]) {
-      
-      // Found one!
-      params = {
-        color: colors[color],
-        colorError: null,
-        seo: seo
-      };
-    } else {
-      
-      // No luck! Return the user value as the error property
-      params = {
-        colorError: request.body.color,
-        seo: seo
-      };
-    }
-  }
-  
-  // The Handlebars template will use the parameter values to update the page with the chosen color
-  reply.view("/src/pages/index.hbs", params);
-});
-
-// Run the server and report out to the logs
-fastify.listen(process.env.PORT, function(err, address) {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-  console.log(`Your app is listening on ${address}`);
-  fastify.log.info(`server listening on ${address}`);
-});
+var name = document.getElementById("nameToConvert");
