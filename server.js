@@ -26,4 +26,7 @@ var letters = [[".", "      ","      ","      ","      ","      ","      ","    
 ["Y", "YY        YY"," YY      YY ","  YY    YY  ","   YY  YY   ","    YYYY    ","    YYYY    ","     YY     ","     YY     ","     YY     ","     YY     "],
 ["Z", "ZZZZZZZZZZZZ","ZZZZZZZZZZZZ","         ZZZ","        ZZZ ","       ZZZ  ","    ZZZ     "," ZZZ        ","ZZZ         ","ZZZZZZZZZZZZ","ZZZZZZZZZZZZ"]];
 
-var name = document.getElementById("nameToConvert");
+var name = prompt("Enter your name!").toLowerCase().split();
+
+console.log(name);
+
