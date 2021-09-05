@@ -26,7 +26,40 @@ var letters = [[".", "      ","      ","      ","      ","      ","      ","    
 ["Y", "YY        YY"," YY      YY ","  YY    YY  ","   YY  YY   ","    YYYY    ","    YYYY    ","     YY     ","     YY     ","     YY     ","     YY     "],
 ["Z", "ZZZZZZZZZZZZ","ZZZZZZZZZZZZ","         ZZZ","        ZZZ ","       ZZZ  ","    ZZZ     "," ZZZ        ","ZZZ         ","ZZZZZZZZZZZZ","ZZZZZZZZZZZZ"]];
 
-var name = prompt("Enter your name!").toLowerCase().split();
 
-console.log(name);
+function submitted(){
+    var initials = [];
+    var output = [[], [], [], [], [], [], [], [], [], []];
+    var toPrint = "";
+    var inputName = document.getElementById("name").value;
+    inputName = inputName.toLowerCase().split(" ");
 
+    for(var x of inputName){
+        initials.push(x.substring(0, 1));
+         initials.push("."); 
+    }
+
+    for(var j of initials){
+        var lineNumber = 1;
+         if(j == "."){
+            for(let i = 0; i < letters[0].length - 1; i++){
+                output[lineNumber - 1].push(letters[0][lineNumber]);
+                lineNumber++;
+            }
+        }else{ 
+            for(let i = 0; i < letters[0].length - 1; i++){
+                output[lineNumber - 1].push(letters[j.charCodeAt() - 96][lineNumber]);
+                lineNumber++;
+            }
+        }
+    }
+
+    for(var k in output){
+        toPrint = toPrint + "<br>";
+        for(var l in output[k]){
+            toPrint = toPrint + output[k][l];
+        }
+    }
+
+    document.getElementById("docOutput").innerHTML = toPrint;
+}
